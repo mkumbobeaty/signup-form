@@ -1,6 +1,7 @@
 import logo from '../asserts/logo.png';
 import { Form, Input, Button } from 'antd';
 import { WomanOutlined, ManOutlined, } from '@ant-design/icons';
+import { useState } from 'react';
 
 const labelCol = {
     xs: { span: 24 },
@@ -22,8 +23,21 @@ const wrapperCol = {
 
 const SignInForm = () => {
 
+    const [ genders, setGenders ] = useState([
+        { name: 'Male', icon: <ManOutlined />, dataTestId: 'male', id:1 },
+        { name: 'Female', icon: <WomanOutlined />, dataTestId: 'female', id:2}, 
+        { name: 'Others', icon: <WomanOutlined />, dataTestId: 'others', id: 3}
+    ]);
+
+    const [ genderSelected, setGenderSelected ] = useState(null)
+
+    const handleGenderClick = (name) => {
+        setGenderSelected(name)
+    }
+
     const onFinish = (values) => {
-        console.log('Success:', values);
+        const payload = { gender: genderSelected, ...values}
+        console.log('Success:', payload);
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -48,13 +62,20 @@ const SignInForm = () => {
                 >
                     <Form.Item
                         label="Gender"
-                        name="gender"
                         className="gender"
-
+                        data-testid="gender"
                     >
-                        <Button icon={<ManOutlined />}>Male</Button>
-                        <Button icon={<WomanOutlined />}>Female</Button>
-                        <Button icon={<WomanOutlined />}>Others</Button>
+                        {
+                            genders.map(({icon, name, id, dataTestId}) =>
+                                <Button
+                                    key={id} icon={icon}
+                                    data-testid={dataTestId}
+                                    onClick={() => handleGenderClick(name)}
+                                    >
+                                    {name}
+                                </Button>
+                            )
+                        }
                     </Form.Item>
                     <Form.Item
                         label="Email"
@@ -81,12 +102,12 @@ const SignInForm = () => {
                                 required: true,
                                 message: 'Please input your password!',
                             },
-                            { min: 6, message: 'Username must be minimum 5 characters.' },
+                            { min: 6, message: 'Username must be minimum 6 characters.' },
 
                         ]}
                         hasFeedback
                     >
-                        <Input.Password />
+                        <Input.Password data-testid="password" />
                     </Form.Item>
 
                     <Form.Item
