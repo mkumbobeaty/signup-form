@@ -1,9 +1,10 @@
 import './App.scss';
+import SignInForm from './components/form';
 
 function App() {
   return (
     <div className="App">
-        <h>Login form</h>
+        <SignInForm />
     </div>
   );
 }
