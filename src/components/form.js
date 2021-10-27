@@ -21,21 +21,23 @@ const wrapperCol = {
     xxl: { span: 24 },
 };
 
-const SignInForm = () => {
+const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
 
     const [genders, setGenders] = useState([
         { name: 'Male', icon: <ManOutlined />, dataTestId: 'male', id: 1 },
         { name: 'Female', icon: <WomanOutlined />, dataTestId: 'female', id: 2 },
         { name: 'Others', icon: <WomanOutlined />, dataTestId: 'others', id: 3 }
     ]);
-    const [genderSelected, setGenderSelected] = useState(null);
 
     const handleGenderClick = (name) => {
         setGenderSelected(name)
     };
 
     const onFinish = (values) => {
-        const payload = { gender: genderSelected, ...values }
+
+        const payload = { gender: genderSelected, ...values}
+        handleSubmit(payload)
+
         Modal.success({
             title: 'User created successful',
             content: (
@@ -69,6 +71,7 @@ const SignInForm = () => {
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
+                    data-testid="form"
                 >
                     <Form.Item
                         label="Gender"
@@ -147,8 +150,8 @@ const SignInForm = () => {
                     <Form.Item
                         wrapperCol={wrapperCol}
                     >
-                        <Button type="primary" htmlType="submit">
-                            Submit
+                        <Button type="primary" htmlType="submit" data-testid="submit" >
+                            Sign Up
                         </Button>
                     </Form.Item>
                 </Form>
