@@ -1,5 +1,5 @@
 import logo from '../asserts/logo.png';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Modal } from 'antd';
 import { WomanOutlined, ManOutlined, } from '@ant-design/icons';
 import { useState } from 'react';
 
@@ -23,21 +23,31 @@ const wrapperCol = {
 
 const SignInForm = () => {
 
-    const [ genders, setGenders ] = useState([
-        { name: 'Male', icon: <ManOutlined />, dataTestId: 'male', id:1 },
-        { name: 'Female', icon: <WomanOutlined />, dataTestId: 'female', id:2}, 
-        { name: 'Others', icon: <WomanOutlined />, dataTestId: 'others', id: 3}
+    const [genders, setGenders] = useState([
+        { name: 'Male', icon: <ManOutlined />, dataTestId: 'male', id: 1 },
+        { name: 'Female', icon: <WomanOutlined />, dataTestId: 'female', id: 2 },
+        { name: 'Others', icon: <WomanOutlined />, dataTestId: 'others', id: 3 }
     ]);
-
-    const [ genderSelected, setGenderSelected ] = useState(null)
+    const [genderSelected, setGenderSelected] = useState(null);
 
     const handleGenderClick = (name) => {
         setGenderSelected(name)
-    }
+    };
 
     const onFinish = (values) => {
-        const payload = { gender: genderSelected, ...values}
-        console.log('Success:', payload);
+        const payload = { gender: genderSelected, ...values }
+        Modal.success({
+            title: 'User created successful',
+            content: (
+                <div>
+                    <p>Email: {payload.email}</p>
+                    <p>Password: {payload.password}.</p>
+                    <p>Confirmed Password: {payload.confirm}.</p>
+                    <p>Gender: {payload.gender} </p>
+                </div>
+            ),
+            onOk() { },
+        });
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -66,12 +76,12 @@ const SignInForm = () => {
                         data-testid="gender"
                     >
                         {
-                            genders.map(({icon, name, id, dataTestId}) =>
+                            genders.map(({ icon, name, id, dataTestId }) =>
                                 <Button
                                     key={id} icon={icon}
                                     data-testid={dataTestId}
                                     onClick={() => handleGenderClick(name)}
-                                    >
+                                >
                                     {name}
                                 </Button>
                             )
