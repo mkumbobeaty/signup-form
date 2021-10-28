@@ -1,0 +1,16 @@
+
+@mixin content-align {
+    display: $displayFlex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@mixin border-content {
+    border-radius: $borderRadius;
+}
+
+@mixin button-style {
+    width: 100%;
+    background-color: $primaryColor;
+    border: $primaryColor;
+}

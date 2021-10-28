@@ -49,11 +49,19 @@ describe('Form', () => {
         expect(genderLabel).toContainElement(buttonsEl)
     });
 
-    it('Should render email input', () => {
+    it('Should render email input and update value as user type', () => {
         const emailEl = screen.getByLabelText(/E-mail/i);
         expect(emailEl).toBeInTheDocument()
         fireEvent.change(emailEl, { target: { value: 'charsbeaty@gmail.com' } });
         expect(emailEl.value).toBe('charsbeaty@gmail.com')
+    });
+
+    it('Should error if email entered is not correct', () => {
+        const emailEl = screen.getByLabelText(/E-mail/i);
+        expect(emailEl).toBeInTheDocument()
+        fireEvent.change(emailEl, { target: { value: 'charsbegmail.com' } });
+        screen.debug()
+        expect(emailEl).toBeInvalid()
     });
 
     it('Should render password  input', () => {
@@ -69,6 +77,12 @@ describe('Form', () => {
         expect(confirmPassEl).toBeInTheDocument()
         fireEvent.change(confirmPassEl, { target: { value: 'Password' } })
         expect(confirmPassEl.value).toBe('Password')
+
+    });
+
+    it('Should render footer contents', () => {
+       const footerEl = screen.getByTestId('formFooter')
+        expect(footerEl).toBeVisible()
 
     });
 
@@ -89,5 +103,6 @@ describe('Form', () => {
         });
 
     });
+
 
 })

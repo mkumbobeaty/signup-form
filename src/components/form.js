@@ -72,6 +72,8 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                     data-testid="form"
 
                 >
+
+                  {/* start of gender */}
                     <Form.Item
                         label="Gender"
                         className="gender"
@@ -89,6 +91,9 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                             )
                         }
                     </Form.Item>
+                    {/* end of gender*/}
+
+                    {/* start of gender*/}
                     <Form.Item
                         label="E-mail"
                         name="email"
@@ -105,7 +110,9 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                     >
                         <Input className="formInput" />
                     </Form.Item>
+                     {/* end of email*/}
 
+                    {/* start  password */}
                     <Form.Item
                         name="password"
                         label="Create Password"
@@ -121,7 +128,9 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                     >
                         <Input.Password data-testid="password" className="formInput" />
                     </Form.Item>
+                    {/* end of password */}
 
+                    {/* start of confirm password */}
                     <Form.Item
                         name="confirm"
                         label="Confirm Password"
@@ -144,6 +153,7 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                     >
                         <Input.Password className="formInput" />
                     </Form.Item>
+                    {/* end of confirm password */}
 
                     {/* start of buttom */}
                     <Form.Item
@@ -159,8 +169,13 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                             Sign Up
                         </Button>
                     </Form.Item>
-                </Form>
+                 {/* end of buttom */}
 
+                </Form>
+                <div className="formFooter" data-testid="formFooter">
+                    <p>Already have an account <a href='/'>Log In</a></p>
+                    <p>Review privacy and disclosures <a href="/">here</a></p>
+                </div>
             </section>
         </div>
     );
