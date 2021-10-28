@@ -5,6 +5,7 @@
 .App {
     background-color: $backgroundColor;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .form-conatiner,
@@ -25,7 +26,7 @@
 
 .signInForm {
     background-color: $secondaryBackgcolor;
-    padding: 20px 40px;
+    padding: 15px 50px;
     @include border-content;
     .formInput {
         &:hover {
@@ -157,4 +158,12 @@ h1,
             padding: 15px 25px 15px 15px;
         }
     }
-}   
+
+    .signInForm {
+        padding: 15px 35px;
+        overflow-x: hidden;
+    }
+    .logo {
+        width: auto;
+    }
+}
