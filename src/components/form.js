@@ -1,7 +1,6 @@
 import logo from '../asserts/logo.png';
 import { Form, Input, Button, Modal } from 'antd';
 import { WomanOutlined, ManOutlined, } from '@ant-design/icons';
-import { useState } from 'react';
 
 const labelCol = {
     xs: { span: 24 },
@@ -21,20 +20,19 @@ const wrapperCol = {
     xxl: { span: 24 },
 };
 
-const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
+const genders = [
+    { name: 'Male', icon: <ManOutlined />, dataTestId: 'male', id: 1 },
+    { name: 'Female', icon: <WomanOutlined />, dataTestId: 'female', id: 2 },
+    { name: 'Others', icon: <WomanOutlined />, dataTestId: 'others', id: 3 }
+]
 
-    const [genders, setGenders] = useState([
-        { name: 'Male', icon: <ManOutlined />, dataTestId: 'male', id: 1 },
-        { name: 'Female', icon: <WomanOutlined />, dataTestId: 'female', id: 2 },
-        { name: 'Others', icon: <WomanOutlined />, dataTestId: 'others', id: 3 }
-    ]);
+const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
 
     const handleGenderClick = (name) => {
         setGenderSelected(name)
     };
 
     const onFinish = (values) => {
-
         const payload = { gender: genderSelected, ...values}
         handleSubmit(payload)
 
@@ -57,8 +55,8 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
     };
 
     return (
-        <>
-            <div className="signInForm">
+        <div className="form-conatiner">
+        <section className="signInForm">
                 <img src={logo} className="logo" alt="logo" />
                 <h1>Sign Up with email</h1>
                 <Form
@@ -72,6 +70,7 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                     data-testid="form"
+                    
                 >
                     <Form.Item
                         label="Gender"
@@ -91,7 +90,7 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                         }
                     </Form.Item>
                     <Form.Item
-                        label="Email"
+                        label="E-mail"
                         name="email"
                         rules={[
                             {
@@ -104,12 +103,12 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input className="formInput" />
                     </Form.Item>
 
                     <Form.Item
                         name="password"
-                        label="Password"
+                        label="Create Password"
                         rules={[
                             {
                                 required: true,
@@ -120,7 +119,7 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                         ]}
                         hasFeedback
                     >
-                        <Input.Password data-testid="password" />
+                        <Input.Password data-testid="password" className="formInput"  />
                     </Form.Item>
 
                     <Form.Item
@@ -144,20 +143,26 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                             }),
                         ]}
                     >
-                        <Input.Password />
+                        <Input.Password className="formInput" />
                     </Form.Item>
 
                     <Form.Item
                         wrapperCol={wrapperCol}
                     >
-                        <Button type="primary" htmlType="submit" data-testid="submit" >
+                        <Button 
+                        type="primary"
+                        htmlType="submit" 
+                        data-testid="submit"
+                        className="signUpButton"
+                        size="large"
+                         >
                             Sign Up
                         </Button>
                     </Form.Item>
                 </Form>
 
-            </div>
-        </>
+            </section>
+        </div>
     );
 }
 

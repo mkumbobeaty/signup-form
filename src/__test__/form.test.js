@@ -17,12 +17,13 @@ describe('Form', () => {
 
     const signUp = (email, password, confirm) => {
         fireEvent.click(screen.getByTestId('male'));
-        fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: email } });
+        fireEvent.change(screen.getByLabelText(/E-mail/i), { target: { value: email } });
         fireEvent.change(screen.getByTestId('password'), { target: { value: password } });
         fireEvent.change(screen.getByLabelText(/Confirm Password/), { target: { value: confirm } });
         fireEvent.submit(screen.getByTestId('submit'));
 
     }
+    
     beforeEach(() => {
         render(
             <SignInForm
@@ -49,7 +50,7 @@ describe('Form', () => {
     });
 
     it('Should render email input', () => {
-        const emailEl = screen.getByLabelText(/Email/i);
+        const emailEl = screen.getByLabelText(/E-mail/i);
         expect(emailEl).toBeInTheDocument()
         fireEvent.change(emailEl, { target: { value: 'charsbeaty@gmail.com' } });
         expect(emailEl.value).toBe('charsbeaty@gmail.com')
@@ -72,7 +73,7 @@ describe('Form', () => {
     });
 
     it('Should called correct number of times', () => {
-        const emailEl = screen.getByLabelText(/Email/i);
+        const emailEl = screen.getByLabelText(/E-mail/i);
         const passwordEl = screen.getByTestId('password');
         const confirmPassEl = screen.getByLabelText(/Confirm Password/);
         signUp('charsbeaty@gmail.com', 'password', 'password');

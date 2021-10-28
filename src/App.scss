@@ -1,26 +1,93 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
+$backgroundColor: #e5e5e5;
+$seondaryBackgcolor: #fff;
 $textColor: #5b5b5b;
+$borderRadius: 10px;
+$displayFlex: flex;
+$primaryColor: #3c9c41;
+$focusColor: #318636;
 
-// .App {
-//     text-align: center;
-// }
-.signInForm{
-    width: 25%;
-    margin-left: 100px;
-    
+.App {
+    background-color: $backgroundColor;
+    height: 100vh;
 }
-.logo{
+
+.form-conatiner,
+.signInForm {
+    display: $displayFlex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-conatiner {
+    height: 100%;
+    width: 100%;
+}
+
+.signInForm {
+    background-color: $seondaryBackgcolor;
+    padding: 40px;
+}
+
+.signInForm,
+.gender button,
+.signInForm .formInput,
+.signUpButton {
+    border-radius: $borderRadius;
+}
+
+.logo {
     width: 100px;
     height: 12vh;
     margin-top: 30px;
 }
 
-h1{
+h1,
+.signInForm .ant-form-item-label > label {
+    font-weight: bold;
     color: $textColor;
 }
-.gender {
-    display: grid;
+
+.gender .ant-form-item-control-input-content {
+    display: $displayFlex;
+    justify-content: space-between;
 }
-.gender button{
-    margin-left: 20px;
-  }
+
+.gender button {
+    height: 75px;
+    padding: 15px 30px 15px 20px;
+}
+
+.gender button:hover,
+.signInForm .formInput:hover {
+    border: 0.5px solid $primaryColor;
+}
+.gender button:focus,
+.gender button:hover {
+    color: $primaryColor;
+}
+
+.gender button:focus,
+.signInForm .formInput:focus,
+.signInForm .formInput::selection {
+    border: 0.5px solid $focusColor;
+}
+
+.signInForm .formInput {
+    padding: 12px;
+}
+
+.signUpButton, .ant-btn-primary {
+    width: 100%;
+    background-color: $primaryColor;
+    border: $primaryColor;
+}
+
+.signUpButton:hover, .ant-btn-primary:hover {
+    background-color: #4db252;
+}
+
+.signUpButton:focus, .ant-btn-primary:focus {
+    background-color: $focusColor;
+}
