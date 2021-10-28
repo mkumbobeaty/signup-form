@@ -56,14 +56,6 @@ describe('Form', () => {
         expect(emailEl.value).toBe('charsbeaty@gmail.com')
     });
 
-    it('Should error if email entered is not correct', () => {
-        const emailEl = screen.getByLabelText(/E-mail/i);
-        expect(emailEl).toBeInTheDocument()
-        fireEvent.change(emailEl, { target: { value: 'charsbegmail.com' } });
-        screen.debug()
-        expect(emailEl).toBeInvalid()
-    });
-
     it('Should render password  input', () => {
         const passwordEl = screen.getByTestId('password');
         expect(passwordEl).toBeInTheDocument();

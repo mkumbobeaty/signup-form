@@ -1,6 +1,7 @@
 import logo from '../asserts/logo.png';
 import { Form, Input, Button, Modal } from 'antd';
 import { WomanOutlined, ManOutlined, } from '@ant-design/icons';
+import { useState } from 'react';
 
 const labelCol = {
     xs: { span: 24 },
@@ -27,6 +28,7 @@ const genders = [
 ]
 
 const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
+    const [form] = Form.useForm();
 
     const handleGenderClick = (name) => {
         setGenderSelected(name)
@@ -46,7 +48,9 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                     <p>Gender: {payload.gender} </p>
                 </div>
             ),
-            onOk() { },
+            onOk() {
+                form.resetFields()
+            },
         });
     };
 
@@ -70,14 +74,15 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                     data-testid="form"
-
+                    form={form}
                 >
 
-                  {/* start of gender */}
+                    {/* start of gender */}
                     <Form.Item
                         label="Gender"
                         className="gender"
                         data-testid="gender"
+
                     >
                         {
                             genders.map(({ icon, name, id, dataTestId }) =>
@@ -104,13 +109,13 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                             },
                             {
                                 required: true,
-                                message: 'Please input your username!',
+                                message: 'Please input your email!',
                             },
                         ]}
                     >
                         <Input className="formInput" />
                     </Form.Item>
-                     {/* end of email*/}
+                    {/* end of email*/}
 
                     {/* start  password */}
                     <Form.Item
@@ -126,7 +131,10 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                         ]}
                         hasFeedback
                     >
-                        <Input.Password data-testid="password" className="formInput" />
+                        <Input.Password
+                            data-testid="password"
+                            className="formInput"
+                        />
                     </Form.Item>
                     {/* end of password */}
 
@@ -169,7 +177,7 @@ const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
                             Sign Up
                         </Button>
                     </Form.Item>
-                 {/* end of buttom */}
+                    {/* end of buttom */}
 
                 </Form>
                 <div className="formFooter" data-testid="formFooter">

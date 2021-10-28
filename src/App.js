@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.scss';
+import './asserts/css/App.scss';
 import SignInForm from './components/form';
 
 function App() {

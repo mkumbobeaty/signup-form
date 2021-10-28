@@ -1,6 +1,6 @@
 @import "~antd/dist/antd.css";
-@import "./asserts/css/variable";
-@import "./asserts/css/mixin";
+@import "./variable";
+@import "./mixin";
 
 .App {
     background-color: $backgroundColor;
