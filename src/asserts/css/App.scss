@@ -57,9 +57,36 @@ h1,
         justify-content: space-between;
     }
 }
+.transgender {
+    font-size: 20px;
+    margin-left: 10px;
+    color: $textColor;
+    &:hover {
+        color: $primaryColor;
+    }
+    &:focus {
+        color: $primaryColor;
+    }
+}
 
 .gender {
     button {
+        .anticon {
+            font-size: 20px;
+            margin-left: 8px;
+            color: $textColor;
+            &:hover {
+                color: $primaryColor;
+            }
+            &:focus {
+                color: $primaryColor;
+            }
+        }
+    }
+}
+.gender {
+    button {
+        display: grid;
         height: 75px;
         padding: 15px 30px 15px 20px;
         @include border-content;
@@ -130,4 +157,4 @@ h1,
             padding: 15px 25px 15px 15px;
         }
     }
-}
+}   

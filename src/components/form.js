@@ -1,7 +1,8 @@
-import logo from '../asserts/logo.png';
+import logo from '../asserts/images/logo.png';
 import { Form, Input, Button, Modal } from 'antd';
 import { WomanOutlined, ManOutlined, } from '@ant-design/icons';
-import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTransgenderAlt } from '@fortawesome/free-solid-svg-icons'
 
 const labelCol = {
     xs: { span: 24 },
@@ -21,10 +22,11 @@ const wrapperCol = {
     xxl: { span: 24 },
 };
 
+const transgender = <FontAwesomeIcon icon={faTransgenderAlt} className="transgender" />
 const genders = [
     { name: 'Male', icon: <ManOutlined />, dataTestId: 'male', id: 1 },
     { name: 'Female', icon: <WomanOutlined />, dataTestId: 'female', id: 2 },
-    { name: 'Others', icon: <WomanOutlined />, dataTestId: 'others', id: 3 }
+    { name: 'Others', icon: transgender, dataTestId: 'others', id: 3 }
 ]
 
 const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
