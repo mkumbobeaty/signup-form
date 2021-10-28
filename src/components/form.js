@@ -26,14 +26,14 @@ const genders = [
     { name: 'Others', icon: <WomanOutlined />, dataTestId: 'others', id: 3 }
 ]
 
-const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
+const SignInForm = ({ handleSubmit, setGenderSelected, genderSelected }) => {
 
     const handleGenderClick = (name) => {
         setGenderSelected(name)
     };
 
     const onFinish = (values) => {
-        const payload = { gender: genderSelected, ...values}
+        const payload = { gender: genderSelected, ...values }
         handleSubmit(payload)
 
         Modal.success({
@@ -56,7 +56,7 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
 
     return (
         <div className="form-conatiner">
-        <section className="signInForm">
+            <section className="signInForm">
                 <img src={logo} className="logo" alt="logo" />
                 <h1>Sign Up with email</h1>
                 <Form
@@ -70,7 +70,7 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                     data-testid="form"
-                    
+
                 >
                     <Form.Item
                         label="Gender"
@@ -119,7 +119,7 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                         ]}
                         hasFeedback
                     >
-                        <Input.Password data-testid="password" className="formInput"  />
+                        <Input.Password data-testid="password" className="formInput" />
                     </Form.Item>
 
                     <Form.Item
@@ -137,7 +137,6 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve();
                                     }
-
                                     return Promise.reject(new Error('The two passwords that you entered do not match!'));
                                 },
                             }),
@@ -146,16 +145,17 @@ const SignInForm = ({handleSubmit, setGenderSelected, genderSelected}) => {
                         <Input.Password className="formInput" />
                     </Form.Item>
 
+                    {/* start of buttom */}
                     <Form.Item
                         wrapperCol={wrapperCol}
                     >
-                        <Button 
-                        type="primary"
-                        htmlType="submit" 
-                        data-testid="submit"
-                        className="signUpButton"
-                        size="large"
-                         >
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            data-testid="submit"
+                            className="signUpButton"
+                            size="large"
+                        >
                             Sign Up
                         </Button>
                     </Form.Item>
